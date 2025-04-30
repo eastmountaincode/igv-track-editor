@@ -5,11 +5,15 @@ import { sessionAtom, shimmerTrackTypesAtom } from '../atoms';
 // Track types that can be edited
 const EDITABLE_TRACK_TYPES = ['alignment', 'annotation'];
 
+// Display mode options
+const DISPLAY_MODES = ['EXPANDED', 'SQUISHED', 'FULL'];
+
 function TrackEditor() {
   const [session, setSession] = useAtom(sessionAtom);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [height, setHeight] = useState<number>(30); // Default height value
   const [heightInputValue, setHeightInputValue] = useState<string>("30"); // String value for the input
+  const [displayMode, setDisplayMode] = useState<string>("EXPANDED"); // Default display mode
   const [, setShimmerTrackTypes] = useAtom(shimmerTrackTypesAtom);
 
   // Toggle selection of track types
@@ -34,13 +38,18 @@ function TrackEditor() {
     }
   };
 
+  // Handle display mode changes
+  const handleDisplayModeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setDisplayMode(e.target.value);
+  };
+
   // Apply height changes to selected track types
   const applyChanges = () => {
     if (!session || selectedTypes.length === 0) return;
     
     const updatedTracks = session.tracks.map(track => {
       if (track.type && selectedTypes.includes(track.type)) {
-        return { ...track, height };
+        return { ...track, height, displayMode };
       }
       return track;
     });
@@ -103,6 +112,21 @@ function TrackEditor() {
                 onChange={handleHeightChange}
                 className="border rounded px-2 py-1 w-full"
               />
+            </div>
+            
+            <div className="property-input mb-2">
+              <label className="block mb-1">Display Mode:</label>
+              <select
+                value={displayMode}
+                onChange={handleDisplayModeChange}
+                className="border rounded px-2 py-1 w-full"
+              >
+                {DISPLAY_MODES.map(mode => (
+                  <option key={mode} value={mode}>
+                    {mode}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </>
