@@ -1,0 +1,363 @@
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* Base layout */
+.app-container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  gap: 1.5rem;
+  height: 100vh;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* File Manager */
+.file-manager {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.file-manager h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.file-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.save-group, .clear-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Simple filename input with extension */
+.simple-filename-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.simple-filename-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  font-size: 0.9rem;
+}
+
+.simple-extension {
+  background-color: #f0f0f0;
+  color: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.save-button, .clear-button {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
+}
+
+.save-button {
+  background-color: #4a78e0;
+  color: white;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: #3a68d0;
+}
+
+.clear-button {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.clear-button:hover:not(:disabled) {
+  background-color: #d0d0d0;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Drag and drop area */
+.drop-zone {
+  min-height: 200px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.drop-zone.active {
+  border-color: #646cff;
+  background-color: rgba(100, 108, 255, 0.1);
+}
+
+.drop-zone p {
+  text-align: center;
+  color: #666;
+}
+
+/* Tracks container */
+.tracks-container {
+  flex: 2;
+  overflow-y: auto;
+  padding: 0 1rem;
+}
+
+.session-info {
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Track items */
+.tracks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.track-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  user-select: none;
+  color: rgba(0, 0, 0, 0.87);
+  position: relative;
+  z-index: 2;
+  border: 2px solid transparent;
+}
+
+.track-header.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.track-header.shimmer::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -150%;
+  width: 100%;
+  height: calc(100% + 4px);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(155, 89, 182, 0.4),
+    rgba(41, 128, 185, 0.6),
+    rgba(0, 230, 64, 0.4),
+    rgba(249, 105, 14, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shimmer-sweep 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.track-header:hover {
+  background-color: #f0f0f0;
+}
+
+.track-name {
+  font-weight: 500;
+}
+
+.expand-icon {
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 3;
+}
+
+.track-details {
+  padding: 0.75rem 1rem;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.track-property {
+  display: flex;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.property-name {
+  font-weight: 500;
+  margin-right: 0.5rem;
+  min-width: 100px;
+}
+
+.property-value {
+  word-break: break-all;
+}
+
+/* Track Editor */
+.track-editor-container {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-left: 1px solid #e0e0e0;
+  padding-left: 1rem;
+}
+
+.track-editor-container h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+/* Responsive layout */
+@media (max-width: 1024px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .file-manager, .track-editor-container {
+    max-width: 100%;
+  }
+  
+  .track-editor-container {
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+    padding-left: 0;
+    padding-top: 1rem;
+  }
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  .app-container,
+  .session-info,
+  .track-header,
+  .track-details {
+    color: rgba(255, 255, 255, 0.87);
+  }
+  
+  .file-manager h2 {
+    color: rgba(255, 255, 255, 0.87);
+  }
+  
+  .simple-filename-input {
+    background-color: #333;
+    border-color: #444;
+    color: rgba(255, 255, 255, 0.87);
+  }
+  
+  .simple-extension {
+    background-color: #444;
+    color: rgba(255, 255, 255, 0.4);
+    border-color: #444;
+  }
+  
+  .clear-button {
+    background-color: #444;
+    color: #eee;
+  }
+  
+  .clear-button:hover:not(:disabled) {
+    background-color: #555;
+  }
+  
+  .track-header {
+    background-color: #2a2a2a;
+  }
+  
+  .track-header:hover {
+    background-color: #333;
+  }
+  
+  .track-details {
+    background-color: #1a1a1a;
+  }
+  
+  .session-info {
+    background-color: #2a2a2a;
+  }
+  
+  .track-item {
+    border-color: #444;
+  }
+  
+  .drop-zone {
+    background-color: #2a2a2a;
+    border-color: #444;
+  }
+  
+  .drop-zone p {
+    color: #aaa;
+  }
+  
+  .track-editor-container {
+    border-color: #444;
+  }
+  
+  @media (max-width: 1024px) {
+    .track-editor-container {
+      border-color: #444;
+    }
+  }
+} 
