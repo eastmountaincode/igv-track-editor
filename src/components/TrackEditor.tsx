@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useAtom } from 'jotai';
 import { sessionAtom, shimmerTrackTypesAtom } from '../atoms';
-import { Track } from '../types';
 
 // Track types that can be edited
 const EDITABLE_TRACK_TYPES = ['alignment', 'annotation'];

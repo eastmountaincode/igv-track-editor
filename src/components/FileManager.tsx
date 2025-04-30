@@ -7,7 +7,7 @@ import { IGVSession } from '../types';
 
 function FileManager() {
   const [session, setSession] = useAtom(sessionAtom);
-  const [fileInfo, setFileInfo] = useAtom(fileInfoAtom);
+  const [_, setFileInfo] = useAtom(fileInfoAtom);
 
   // Handle file loaded from DropZone
   const handleFileLoaded = (jsonData: IGVSession, fileName: string) => {
