@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAtom } from 'jotai';
-import { sessionAtom, fileInfoAtom } from '../atoms';
+import { sessionAtom, fileInfoAtom } from '../../atoms';
+import { FaSave } from 'react-icons/fa';
 
 function SaveFile() {
   const [fileName, setFileName] = useState<string>('');
@@ -53,25 +54,25 @@ function SaveFile() {
   };
 
   return (
-    <div className="save-group">
-      <div className="simple-filename-container">
+    <div className="flex flex-col gap-2 w-full">
+      <div className="relative w-full flex items-center">
         <input
           ref={inputRef}
           type="text"
           placeholder="Enter file name"
           value={fileName}
           onChange={handleChange}
-          className="simple-filename-input"
+          className="w-full p-2 rounded-l-md bg-[#333] text-white text-opacity-90 border border-[#444] focus:border-slate-200 outline-none"
         />
-        <span className="simple-extension">.json</span>
+        <span className="bg-[#575757] text-white text-opacity-40 p-2 border border-[#575757] border-l-0 rounded-r-md text-sm whitespace-nowrap">.json</span>
       </div>
-      <p className="text-xs text-gray-500 italic mt-1 mb-2 text-center dark:text-gray-400">.json extension automatically added</p>
+      <p className="text-xs text-gray-400 italic mt-1 mb-2 text-center">.json extension automatically added</p>
       <button 
-        className="save-button" 
+        className="bg-slate-600 p-2 text-white hover:bg-slate-700 flex items-center justify-center rounded" 
         onClick={handleSave}
         disabled={!session}
       >
-        Save File
+        <FaSave className="mr-2" /> <span>Save File</span>
       </button>
     </div>
   );

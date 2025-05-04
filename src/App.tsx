@@ -1,13 +1,13 @@
 import './App.css';
-import FileManager from './components/FileManager';
-import TracksViewer from './components/TracksViewer';
+import FileManager from './components/FileManager/FileManager';
+import TrackViewer from './components/TrackViewer/TrackViewer';
 import TrackEditor from './components/TrackEditor';
 
 function App() {
   return (
     <div className="app-container">
       <FileManager />
-      <TracksViewer />
+      <TrackViewer />
       <TrackEditor />
     </div>
   );

@@ -1,0 +1,79 @@
+/* Drag and drop area */
+.drop-zone {
+  min-height: 200px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* Only apply hover styles when not in active state */
+.drop-zone:hover:not(.active) {
+  border-color: #8c92fd;
+  background-color: rgba(100, 108, 255, 0.05);
+}
+
+.drop-zone.active {
+  border-color: #646cff;
+  background-color: rgba(100, 108, 255, 0.1);
+}
+
+.drop-zone-content {
+  text-align: center;
+  pointer-events: none; /* Prevent child elements from interfering with drag events */
+}
+
+.drop-zone p {
+  text-align: center;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.drag-instruction,
+.click-to-upload {
+  color: #4a78e0;
+  font-weight: 500;
+}
+
+.or-divider {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0.5rem 0;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  .drop-zone {
+    background-color: #2a2a2a;
+    border-color: #444;
+  }
+  
+  .drop-zone:hover:not(.active) {
+    border-color: #777adb;
+    background-color: rgba(100, 108, 255, 0.07);
+  }
+  
+  .drop-zone.active {
+    border-color: #646cff;
+    background-color: rgba(100, 108, 255, 0.15);
+  }
+  
+  .drop-zone p {
+    color: #aaa;
+  }
+  
+  .or-divider {
+    color: #777;
+  }
+  
+  .drag-instruction,
+  .click-to-upload {
+    color: #6d8eea;
+  }
+} 

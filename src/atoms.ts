@@ -22,4 +22,7 @@ export const trackCountAtom = atom((get) => {
 });
 
 // Atom to track which track types have been modified and should shimmer
-export const shimmerTrackTypesAtom = atom<string[]>([]); 
+export const shimmerTrackTypesAtom = atom<string[]>([]);
+
+// Atom to track which track types are currently selected in the editor
+export const selectedTrackTypesAtom = atom<string[]>([]); 

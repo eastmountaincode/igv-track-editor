@@ -4,20 +4,24 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #262626; /* neutral-800 color */
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #262626; /* neutral-800 color */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    background-color: #262626; /* This is the neutral-800 color */
+  }
+  
+  body {
+    background-color: #262626; /* This is the neutral-800 color */
   }
 }
