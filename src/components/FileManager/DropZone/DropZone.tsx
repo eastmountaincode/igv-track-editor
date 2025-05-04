@@ -7,6 +7,7 @@ interface DropZoneProps {
 
 function DropZone({ onFileLoaded }: DropZoneProps) {
   const [dragActive, setDragActive] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
   const [key, setKey] = useState(Date.now()); // Add a key to force input remounting
@@ -40,6 +41,7 @@ function DropZone({ onFileLoaded }: DropZoneProps) {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
+    setErrorMessage(null); // Clear any previous errors
     
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       handleFile(e.dataTransfer.files[0]);
@@ -48,6 +50,7 @@ function DropZone({ onFileLoaded }: DropZoneProps) {
 
   // Handle file selection from input
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorMessage(null); // Clear any previous errors
     if (e.target.files && e.target.files[0]) {
       handleFile(e.target.files[0]);
     }
@@ -65,7 +68,7 @@ function DropZone({ onFileLoaded }: DropZoneProps) {
         resetFileInput();
       } catch (error) {
         console.error("Error parsing JSON file:", error);
-        alert("Error parsing JSON file. Please make sure it's a valid IGV session file.");
+        setErrorMessage("Error parsing JSON file. Please make sure it's a valid IGV session file.");
       }
     };
     
@@ -74,6 +77,7 @@ function DropZone({ onFileLoaded }: DropZoneProps) {
 
   // Open file dialog when button is clicked
   const openFileDialog = () => {
+    setErrorMessage(null); // Clear any previous errors
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -107,6 +111,12 @@ function DropZone({ onFileLoaded }: DropZoneProps) {
         <p className="drag-instruction">Drag and drop an IGV session file (.json) here</p>
         <p className="or-divider">or</p>
         <p className="click-to-upload">Click to select a file</p>
+        
+        {errorMessage && (
+          <div className="error-message mt-4 p-2 bg-red-600/20 text-red-400 rounded-md text-sm">
+            {errorMessage}
+          </div>
+        )}
       </div>
     </div>
   );

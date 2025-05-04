@@ -1,18 +1,15 @@
 @import 'tailwindcss';
 
-/* Base styling - using dark mode by default */
+
 .app-container {
   display: flex;
   max-width: 1400px;
   margin: 0 auto;
   padding: 1rem;
   gap: 1.5rem;
-  min-height: 100vh;
   height: auto;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #262626; /* neutral-800 color */
+  flex: 1;
 }
-
 
 button:disabled {
   opacity: 0.5;
@@ -20,7 +17,7 @@ button:disabled {
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* Track Editor */
