@@ -72,7 +72,7 @@ function SaveFile() {
         onClick={handleSave}
         disabled={!session}
       >
-        <FaSave className="mr-2" /> <span>Save File</span>
+        <FaSave className="mr-2" /> <span>Download File</span>
       </button>
     </div>
   );
